@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<script th:fragment="functions">
+	function checkUserIdExist(){
+		var user_id=$("#userId").val()
+		if(user_id.length==0){
+			alert("아이디를 입력해주세요")
+			return
+		}
+		$.ajax({
+			url:'${root}user/checkUserIdExist/'+userId,
+			type:'get',
+			dataType:'text',
+			success:function(result){
+				if(result.trim()=='true'){
+					alert('사용할 수 있는 아이디 입니다.')
+					$("#userIdExist").val('true')
+				}else{
+					alert('사용할 수 없는 아이디 입니다.')
+					$("#userIdExist").val('false')
+				}
+			}
+		})
+	}
+
+	function resetUserIdExist(){
+		$("#userIdExist").val('false')
+	}
+</script>

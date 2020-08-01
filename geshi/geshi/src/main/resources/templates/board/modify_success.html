@@ -1,0 +1,7 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<script th:inline="javascript">
+/*<![CDATA[*/
+    var link=/*[[${board_idx}]]*/ 'default';
+    location.href='/board/read?board_idx='+link;
+/*]]>*/
+</script>
