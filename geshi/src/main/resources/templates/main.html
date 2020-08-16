@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header::header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<nav th:replace="fragments/top_menu::top_menu"></nav>
+<h1 style="margin-top:100px; margin-left:30px;" th:text="${greeting}"></h1>
+</body>
+</html>

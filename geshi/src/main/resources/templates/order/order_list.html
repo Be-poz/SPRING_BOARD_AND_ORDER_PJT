@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<nav th:replace="fragments/top_menu::top_menu"></nav>
+    <div class="container" style="margin-top:100px;">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>회원명</th>
+                    <th>대표 상품명</th>
+                    <th>주문 가격</th>
+                    <th>주문 수량</th>
+                    <th>상태</th>
+                    <th>일시</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${list}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.username}"></td>
+                    <td th:text="${item.item_list[0].item.itemname}"></td>
+                    <td th:text="${item.item_list[0].orderPrice}"></td>
+                    <td th:text="${item.item_list[0].count}"></td>
+                    <td th:text="${item.status}"></td>
+                    <td th:text="${item.time}"></td>
+                    <td>
+                        <a th:if="${item.status.equals('ORDER')}" href="#"
+                           th:href="'javascript:cancel('+${item.id}+')'"
+                           class="btn btn-danger">CANCEL</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> <!-- /container -->
+
+    <div class="text-right">
+        <a th:href="@{/order/request}" class="btn btn-primary" style="margin-right:220px; margin-top:30px;">주문하기</a>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+<script>
+function cancel(id) {
+var form = document.createElement("form");
+form.setAttribute("method", "post");
+form.setAttribute("action", "/order/" + id + "/cancel");
+document.body.appendChild(form);
+form.submit();
+}
+</script>
+</html>
